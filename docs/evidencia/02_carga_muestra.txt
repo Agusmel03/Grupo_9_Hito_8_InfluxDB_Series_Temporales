@@ -1,4 +1,14 @@
-牐浩牥⁡慣杲⁡敤洠敵瑳慲ⴠ䠠瑩⁯സ䘊捥慨›㄰ㄯ⼰〲㘲㈠㨳㈴〺ര䄊捲楨潶›獥慴楤瑳捩獡浟敵瑳慲氮൰吊瑯污搠⁥異瑮獯朠湥牥摡獯›㘸〴਍Result: _result
+Carga de muestra funcional - Hito 8
+Fecha de evidencia: 02/10/2026 00:44:58
+
+Archivo generado: data\estadisticas_muestra.lp
+Partidos: 4
+Equipos por partido: 2
+Puntos por equipo: 1080
+Total esperado: 8640
+
+Validacion de puntos efectivamente almacenados:
+Result: _result
 Table: keys: [_start, _stop]
                    _start:time                      _stop:time                  _value:int
 ------------------------------  ------------------------------  --------------------------
