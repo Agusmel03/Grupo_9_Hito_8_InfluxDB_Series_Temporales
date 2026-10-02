@@ -1,0 +1,10 @@
+.env
+*.token
+token.txt
+config.local.*
+__pycache__/
+*.pyc
+
+data/*.csv
+data/*.lp
+!data/.gitkeep
