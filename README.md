@@ -6,8 +6,7 @@
 
 
 
-\*\*Repositorio GitHub:\*\* PENDIENTE\_AGREGAR\_LINK
-
+**Repositorio GitHub:** https://github.com/Agusmel03/Grupo_9_Hito_8_InfluxDB_Series_Temporales
 
 
 Implementación del módulo de series temporales del proyecto \*\*Fixture 2030\*\* utilizando InfluxDB.
