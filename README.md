@@ -1,15 +1,15 @@
-\# Hito 8 - Series Temporales con InfluxDB
+# Hito 8 - Series Temporales con InfluxDB
 
 
 
-\## Ingeniería de Datos II - Grupo 9
+## Ingeniería de Datos II - Grupo 9
 
 
 
 **Repositorio GitHub:** https://github.com/Agusmel03/Grupo_9_Hito_8_InfluxDB_Series_Temporales
 
 
-Implementación del módulo de series temporales del proyecto \*\*Fixture 2030\*\* utilizando InfluxDB.
+Implementación del módulo de series temporales del proyecto **Fixture 2030** utilizando InfluxDB.
 
 
 
@@ -17,25 +17,25 @@ El objetivo del módulo es registrar, consultar y conservar estadísticas que ev
 
 
 
-\---
+---
 
 
 
-\## 1. Tecnologías utilizadas
+## 1. Tecnologías utilizadas
 
 
 
-\- InfluxDB
+- InfluxDB
 
-\- Docker Compose
+- Docker Compose
 
-\- Python
+- Python
 
-\- PowerShell
+- PowerShell
 
-\- Flux
+- Flux
 
-\- Line Protocol
+- Line Protocol
 
 
 
@@ -63,11 +63,11 @@ InfluxDB v2.9.1
 
 
 
-\---
+---
 
 
 
-\## 2. Modelo temporal
+## 2. Modelo temporal
 
 
 
@@ -77,7 +77,7 @@ El measurement principal es:
 
 ```text
 
-estadisticas\_equipo
+estadisticas_equipo
 
 ```
 
@@ -87,41 +87,41 @@ Cada punto representa las estadísticas de un equipo dentro de un partido en un 
 
 
 
-\### Tags
+### Tags
 
 
 
 ```text
 
-partido\_id
+partido_id
 
-equipo\_codigo
+equipo_codigo
 
-sede\_id
+sede_id
 
 ```
 
 
 
-\### Fields
+### Fields
 
 
 
 ```text
 
-posesion\_pct
+posesion_pct
 
-pases\_completados\_total
+pases_completados_total
 
-tiros\_intervalo
+tiros_intervalo
 
-recuperaciones\_intervalo
+recuperaciones_intervalo
 
 ```
 
 
 
-\### Precisión temporal
+### Precisión temporal
 
 
 
@@ -133,7 +133,7 @@ milisegundos
 
 
 
-\### Granularidad funcional
+### Granularidad funcional
 
 
 
@@ -145,11 +145,11 @@ milisegundos
 
 
 
-\---
+---
 
 
 
-\## 3. Semántica de las medidas
+## 3. Semántica de las medidas
 
 
 
@@ -157,13 +157,13 @@ milisegundos
 
 |---|---|---|---|
 
-| `posesion\_pct` | float | Porcentaje observado | `mean()` |
+| `posesion_pct` | float | Porcentaje observado | `mean()` |
 
-| `pases\_completados\_total` | integer | Contador acumulativo | `last()` |
+| `pases_completados_total` | integer | Contador acumulativo | `last()` |
 
-| `tiros\_intervalo` | integer | Eventos por intervalo | `sum()` |
+| `tiros_intervalo` | integer | Eventos por intervalo | `sum()` |
 
-| `recuperaciones\_intervalo` | integer | Eventos por intervalo | `sum()` |
+| `recuperaciones_intervalo` | integer | Eventos por intervalo | `sum()` |
 
 
 
@@ -171,15 +171,15 @@ La función de agregación se selecciona según la naturaleza de cada medida.
 
 
 
-Por ejemplo, no corresponde sumar `pases\_completados\_total`, ya que se trata de un contador acumulativo.
+Por ejemplo, no corresponde sumar `pases_completados_total`, ya que se trata de un contador acumulativo.
 
 
 
-\---
+---
 
 
 
-\## 4. Política de retención
+## 4. Política de retención
 
 
 
@@ -187,13 +187,13 @@ Se utilizan tres buckets.
 
 
 
-\### Datos en vivo
+### Datos en vivo
 
 
 
 ```text
 
-Bucket: estadisticas\_live
+Bucket: estadisticas_live
 
 Retención: 720h
 
@@ -205,13 +205,13 @@ Granularidad: 5 segundos
 
 
 
-\### Datos históricos
+### Datos históricos
 
 
 
 ```text
 
-Bucket: estadisticas\_historicas
+Bucket: estadisticas_historicas
 
 Retención: 8760h
 
@@ -223,13 +223,13 @@ Granularidad: 1 minuto
 
 
 
-\### Benchmark
+### Benchmark
 
 
 
 ```text
 
-Bucket: estadisticas\_benchmark
+Bucket: estadisticas_benchmark
 
 Retención: 24h
 
@@ -247,29 +247,29 @@ Las funciones utilizadas son:
 
 ```text
 
-posesion\_pct              -> mean()
+posesion_pct              -> mean()
 
-pases\_completados\_total   -> last()
+pases_completados_total   -> last()
 
-tiros\_intervalo           -> sum()
+tiros_intervalo           -> sum()
 
-recuperaciones\_intervalo  -> sum()
+recuperaciones_intervalo  -> sum()
 
 ```
 
 
 
-\---
+---
 
 
 
-\## 5. Estructura del proyecto
+## 5. Estructura del proyecto
 
 
 
 ```text
 
-Grupo\_9\_Hito\_8\_InfluxDB\_Series\_Temporales/
+Grupo_9_Hito_8_InfluxDB_Series_Temporales/
 
 │
 
@@ -293,13 +293,13 @@ Grupo\_9\_Hito\_8\_InfluxDB\_Series\_Temporales/
 
 │   ├── inicializacion.ps1
 
-│   ├── generacion\_puntos.py
+│   ├── generacion_puntos.py
 
-│   ├── generacion\_masiva.py
+│   ├── generacion_masiva.py
 
-│   ├── carga\_lotes.ps1
+│   ├── carga_lotes.ps1
 
-│   ├── consultas\_temporales.flux
+│   ├── consultas_temporales.flux
 
 │   ├── agregaciones.flux
 
@@ -307,49 +307,49 @@ Grupo\_9\_Hito\_8\_InfluxDB\_Series\_Temporales/
 
 │   ├── validacion.flux
 
-│   ├── validacion\_distribucion.flux
+│   ├── validacion_distribucion.flux
 
-│   ├── validacion\_historico.flux
+│   ├── validacion_historico.flux
 
-│   └── validacion\_benchmark.flux
+│   └── validacion_benchmark.flux
 
 │
 
 └── docs/
 
-&#x20;   ├── patrones\_de\_acceso.md
+&#x20;   ├── patrones_de_acceso.md
 
-&#x20;   ├── modelo\_multidimensional.md
+&#x20;   ├── modelo_multidimensional.md
 
-&#x20;   ├── cardinalidad\_y\_escalabilidad.md
+&#x20;   ├── cardinalidad_y_escalabilidad.md
 
-&#x20;   ├── retencion\_y\_granularidad.md
+&#x20;   ├── retencion_y_granularidad.md
 
 &#x20;   ├── rendimiento.md
 
-&#x20;   ├── coherencia\_tpo.md
+&#x20;   ├── coherencia_tpo.md
 
 &#x20;   │
 
 &#x20;   └── evidencia/
 
-&#x20;       ├── 00\_ambiente.txt
+&#x20;       ├── 00_ambiente.txt
 
-&#x20;       ├── 01\_inicializacion.txt
+&#x20;       ├── 01_inicializacion.txt
 
-&#x20;       ├── 02\_carga\_muestra.txt
+&#x20;       ├── 02_carga_muestra.txt
 
-&#x20;       ├── 03\_validacion\_distribucion.txt
+&#x20;       ├── 03_validacion_distribucion.txt
 
-&#x20;       ├── 04\_consultas\_temporales.txt
+&#x20;       ├── 04_consultas_temporales.txt
 
-&#x20;       ├── 05\_agregaciones.txt
+&#x20;       ├── 05_agregaciones.txt
 
-&#x20;       ├── 06\_retencion\_downsampling.txt
+&#x20;       ├── 06_retencion_downsampling.txt
 
-&#x20;       ├── 07\_benchmark.txt
+&#x20;       ├── 07_benchmark.txt
 
-&#x20;       └── 08\_carga\_lotes.txt
+&#x20;       └── 08_carga_lotes.txt
 
 ```
 
@@ -359,11 +359,11 @@ Los archivos `.lp` generados durante las pruebas no se versionan.
 
 
 
-\---
+---
 
 
 
-\## 6. Requisitos
+## 6. Requisitos
 
 
 
@@ -387,11 +387,11 @@ Git
 
 
 
-\---
+---
 
 
 
-\## 7. Configuración local
+## 7. Configuración local
 
 
 
@@ -413,15 +413,15 @@ Completar las variables locales:
 
 ```text
 
-INFLUXDB\_USERNAME=
+INFLUXDB_USERNAME=
 
-INFLUXDB\_PASSWORD=
+INFLUXDB_PASSWORD=
 
-INFLUXDB\_ORG=
+INFLUXDB_ORG=
 
-INFLUXDB\_BUCKET\_LIVE=
+INFLUXDB_BUCKET_LIVE=
 
-INFLUXDB\_TOKEN=
+INFLUXDB_TOKEN=
 
 ```
 
@@ -443,11 +443,11 @@ se encuentra incluido en `.gitignore` y no debe publicarse en el repositorio.
 
 
 
-\---
+---
 
 
 
-\## 8. Levantar InfluxDB
+## 8. Levantar InfluxDB
 
 
 
@@ -499,11 +499,11 @@ OK
 
 
 
-\---
+---
 
 
 
-\## 9. Inicialización
+## 9. Inicialización
 
 
 
@@ -513,7 +513,7 @@ Ejecutar:
 
 ```powershell
 
-.\\scripts\\inicializacion.ps1
+.\scripts\inicializacion.ps1
 
 ```
 
@@ -525,9 +525,9 @@ El script verifica la disponibilidad de InfluxDB y crea, en caso de no existir:
 
 ```text
 
-estadisticas\_historicas
+estadisticas_historicas
 
-estadisticas\_benchmark
+estadisticas_benchmark
 
 ```
 
@@ -539,7 +539,7 @@ El bucket:
 
 ```text
 
-estadisticas\_live
+estadisticas_live
 
 ```
 
@@ -561,11 +561,11 @@ El script de inicialización puede ejecutarse múltiples veces sin volver a crea
 
 
 
-\---
+---
 
 
 
-\## 10. Generación de la muestra funcional
+## 10. Generación de la muestra funcional
 
 
 
@@ -575,7 +575,7 @@ Ejecutar:
 
 ```powershell
 
-python .\\scripts\\generacion\_puntos.py
+python .\scripts\generacion_puntos.py
 
 ```
 
@@ -609,7 +609,7 @@ Se genera:
 
 ```text
 
-data\\estadisticas\_muestra.lp
+data\estadisticas_muestra.lp
 
 ```
 
@@ -619,11 +619,11 @@ La generación utiliza una semilla fija para permitir reproducibilidad.
 
 
 
-\---
+---
 
 
 
-\## 11. Carga de datos
+## 11. Carga de datos
 
 
 
@@ -633,7 +633,7 @@ La muestra puede cargarse directamente mediante:
 
 ```powershell
 
-docker exec fixture2030-influxdb influx write --host http://localhost:8086 --org grupo9 --bucket estadisticas\_live --token <TOKEN\_LOCAL> --precision ms --file /data/estadisticas\_muestra.lp
+docker exec fixture2030-influxdb influx write --host http://localhost:8086 --org grupo9 --bucket estadisticas_live --token <TOKEN_LOCAL> --precision ms --file /data/estadisticas_muestra.lp
 
 ```
 
@@ -645,7 +645,7 @@ También se implementó un mecanismo de carga por lotes:
 
 ```powershell
 
-.\\scripts\\carga\_lotes.ps1 -Archivo "data\\estadisticas\_muestra.lp" -Bucket "estadisticas\_live" -TamanoLote 50000
+.\scripts\carga_lotes.ps1 -Archivo "data\estadisticas_muestra.lp" -Bucket "estadisticas_live" -TamanoLote 50000
 
 ```
 
@@ -671,21 +671,21 @@ Además incluye:
 
 
 
-\- detección de errores;
+- detección de errores;
 
-\- reintentos;
+- reintentos;
 
-\- conteo de puntos procesados;
+- conteo de puntos procesados;
 
-\- limpieza del archivo temporal.
-
-
-
-\---
+- limpieza del archivo temporal.
 
 
 
-\## 12. Validación de la muestra
+---
+
+
+
+## 12. Validación de la muestra
 
 
 
@@ -695,7 +695,7 @@ Ejecutar:
 
 ```powershell
 
-docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN\_LOCAL> --file /scripts/validacion.flux
+docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN_LOCAL> --file /scripts/validacion.flux
 
 ```
 
@@ -759,11 +759,11 @@ P004 AAC S004 -> 1080
 
 
 
-\---
+---
 
 
 
-\## 13. Consultas temporales
+## 13. Consultas temporales
 
 
 
@@ -773,7 +773,7 @@ Ejecutar:
 
 ```powershell
 
-docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN\_LOCAL> --file /scripts/consultas\_temporales.flux
+docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN_LOCAL> --file /scripts/consultas_temporales.flux
 
 ```
 
@@ -783,15 +783,15 @@ Se implementaron consultas para:
 
 
 
-\- recuperar una ventana temporal;
+- recuperar una ventana temporal;
 
-\- filtrar por partido;
+- filtrar por partido;
 
-\- filtrar por equipo;
+- filtrar por equipo;
 
-\- comparar equipos;
+- comparar equipos;
 
-\- agregar estadísticas mediante ventanas temporales.
+- agregar estadísticas mediante ventanas temporales.
 
 
 
@@ -811,11 +811,11 @@ Ventana: 19:20 a 19:25
 
 
 
-\---
+---
 
 
 
-\## 14. Agregaciones
+## 14. Agregaciones
 
 
 
@@ -825,7 +825,7 @@ Ejecutar:
 
 ```powershell
 
-docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN\_LOCAL> --file /scripts/agregaciones.flux
+docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN_LOCAL> --file /scripts/agregaciones.flux
 
 ```
 
@@ -889,11 +889,11 @@ AAB: 48
 
 
 
-\---
+---
 
 
 
-\## 15. Downsampling
+## 15. Downsampling
 
 
 
@@ -903,7 +903,7 @@ Ejecutar:
 
 ```powershell
 
-docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN\_LOCAL> --file /scripts/downsampling.flux
+docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN_LOCAL> --file /scripts/downsampling.flux
 
 ```
 
@@ -939,7 +939,7 @@ y se almacenan en:
 
 ```text
 
-estadisticas\_historicas
+estadisticas_historicas
 
 ```
 
@@ -951,7 +951,7 @@ El measurement resultante es:
 
 ```text
 
-estadisticas\_equipo\_resumen\_1m
+estadisticas_equipo_resumen_1m
 
 ```
 
@@ -963,7 +963,7 @@ Validación:
 
 ```powershell
 
-docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN\_LOCAL> --file /scripts/validacion\_historico.flux
+docker exec fixture2030-influxdb influx query --host http://localhost:8086 --org grupo9 --token <TOKEN_LOCAL> --file /scripts/validacion_historico.flux
 
 ```
 
@@ -993,15 +993,15 @@ Esto coincide con:
 
 
 
-para el field `posesion\_pct`.
+para el field `posesion_pct`.
 
 
 
-\---
+---
 
 
 
-\## 16. Cardinalidad
+## 16. Cardinalidad
 
 
 
@@ -1011,11 +1011,11 @@ Se utilizan como tags:
 
 ```text
 
-partido\_id
+partido_id
 
-equipo\_codigo
+equipo_codigo
 
-sede\_id
+sede_id
 
 ```
 
@@ -1073,11 +1073,11 @@ para evitar crecimiento innecesario de cardinalidad.
 
 
 
-\---
+---
 
 
 
-\## 17. Estrategia para 10M+ puntos
+## 17. Estrategia para 10M+ puntos
 
 
 
@@ -1087,7 +1087,7 @@ Se implementó:
 
 ```text
 
-scripts/generacion\_masiva.py
+scripts/generacion_masiva.py
 
 ```
 
@@ -1103,7 +1103,7 @@ Ejemplo:
 
 ```powershell
 
-python .\\scripts\\generacion\_masiva.py --puntos 10000000 --salida data\\10\_millones.lp
+python .\scripts\generacion_masiva.py --puntos 10000000 --salida data\10_millones.lp
 
 ```
 
@@ -1133,23 +1133,23 @@ y utilizar:
 
 
 
-\- escritura secuencial;
+- escritura secuencial;
 
-\- reintentos;
+- reintentos;
 
-\- validación posterior;
+- validación posterior;
 
-\- conteo de puntos;
+- conteo de puntos;
 
-\- concurrencia controlada en escenarios de mayor escala.
-
-
-
-\---
+- concurrencia controlada en escenarios de mayor escala.
 
 
 
-\## 18. Benchmark real
+---
+
+
+
+## 18. Benchmark real
 
 
 
@@ -1241,11 +1241,11 @@ Estos valores corresponden exclusivamente al ambiente y volumen medidos y no rep
 
 
 
-\---
+---
 
 
 
-\## 19. Persistencia
+## 19. Persistencia
 
 
 
@@ -1255,7 +1255,7 @@ InfluxDB utiliza almacenamiento persistente en:
 
 ```text
 
-\~/docker/data/influxdb
+~/docker/data/influxdb
 
 ```
 
@@ -1281,11 +1281,11 @@ pero los archivos `.lp` se excluyen del repositorio mediante `.gitignore`.
 
 
 
-\---
+---
 
 
 
-\## 20. Seguridad
+## 20. Seguridad
 
 
 
@@ -1327,11 +1327,11 @@ Las credenciales utilizadas son exclusivamente locales.
 
 
 
-\---
+---
 
 
 
-\## 21. Evidencia
+## 21. Evidencia
 
 
 
@@ -1353,33 +1353,33 @@ Incluyen:
 
 ```text
 
-00\_ambiente.txt
+00_ambiente.txt
 
-01\_inicializacion.txt
+01_inicializacion.txt
 
-02\_carga\_muestra.txt
+02_carga_muestra.txt
 
-03\_validacion\_distribucion.txt
+03_validacion_distribucion.txt
 
-04\_consultas\_temporales.txt
+04_consultas_temporales.txt
 
-05\_agregaciones.txt
+05_agregaciones.txt
 
-06\_retencion\_downsampling.txt
+06_retencion_downsampling.txt
 
-07\_benchmark.txt
+07_benchmark.txt
 
-08\_carga\_lotes.txt
+08_carga_lotes.txt
 
 ```
 
 
 
-\---
+---
 
 
 
-\## 22. Documentación adicional
+## 22. Documentación adicional
 
 
 
@@ -1389,27 +1389,27 @@ El análisis completo se encuentra en:
 
 ```text
 
-docs/patrones\_de\_acceso.md
+docs/patrones_de_acceso.md
 
-docs/modelo\_multidimensional.md
+docs/modelo_multidimensional.md
 
-docs/cardinalidad\_y\_escalabilidad.md
+docs/cardinalidad_y_escalabilidad.md
 
-docs/retencion\_y\_granularidad.md
+docs/retencion_y_granularidad.md
 
 docs/rendimiento.md
 
-docs/coherencia\_tpo.md
+docs/coherencia_tpo.md
 
 ```
 
 
 
-\---
+---
 
 
 
-\## 23. Coherencia con el Fixture 2030
+## 23. Coherencia con el Fixture 2030
 
 
 
@@ -1459,9 +1459,9 @@ permitiendo integrar conceptualmente el módulo temporal con el resto del Fixtur
 
 
 
-\---
+---
 
 
 
-\## Grupo 9 - Ingeniería de Datos II
+## Grupo 9 - Ingeniería de Datos II
 

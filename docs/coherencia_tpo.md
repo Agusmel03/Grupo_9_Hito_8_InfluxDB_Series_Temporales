@@ -1,8 +1,8 @@
-\# Coherencia con el TPO - Hito 8 - Grupo 9
+# Coherencia con el TPO - Hito 8 - Grupo 9
 
 
 
-\## 1. Continuidad del Fixture 2030
+## 1. Continuidad del Fixture 2030
 
 
 
@@ -14,7 +14,7 @@ No reemplaza a los módulos implementados en hitos anteriores, sino que compleme
 
 
 
-\## 2. Identificadores compartidos
+## 2. Identificadores compartidos
 
 
 
@@ -66,7 +66,7 @@ Esto permite asociar las observaciones temporales con las entidades gestionadas 
 
 
 
-\## 3. Relación con MongoDB
+## 3. Relación con MongoDB
 
 
 
@@ -82,7 +82,7 @@ Solamente conserva identificadores de equipo como dimensiones necesarias para co
 
 
 
-\## 4. Relación con Neo4j
+## 4. Relación con Neo4j
 
 
 
@@ -90,15 +90,15 @@ Neo4j modela relaciones entre:
 
 
 
-\- equipos;
+- equipos;
 
-\- jugadores;
+- jugadores;
 
-\- partidos;
+- partidos;
 
-\- sedes;
+- sedes;
 
-\- eventos.
+- eventos.
 
 
 
@@ -110,7 +110,7 @@ Neo4j responde preguntas relacionales, mientras que InfluxDB responde preguntas 
 
 
 
-\## 5. Relación con Cassandra
+## 5. Relación con Cassandra
 
 
 
@@ -126,13 +126,13 @@ Las estadísticas en vivo poseen una naturaleza diferente porque requieren:
 
 
 
-\- timestamp;
+- timestamp;
 
-\- ventanas temporales;
+- ventanas temporales;
 
-\- agregaciones;
+- agregaciones;
 
-\- evolución histórica.
+- evolución histórica.
 
 
 
@@ -140,7 +140,7 @@ Por esa razón se almacenan en InfluxDB y no en Cassandra.
 
 
 
-\## 6. Relación con Redis
+## 6. Relación con Redis
 
 
 
@@ -156,7 +156,7 @@ Los módulos pueden coexistir porque responden a necesidades diferentes.
 
 
 
-\## 7. Persistencia políglota
+## 7. Persistencia políglota
 
 
 
@@ -172,19 +172,19 @@ El Hito 8 agrega InfluxDB como motor específico para:
 
 estadísticas temporales
 
-\+
++
 
 ventanas de tiempo
 
-\+
++
 
 agregaciones
 
-\+
++
 
 retención
 
-\+
++
 
 downsampling
 

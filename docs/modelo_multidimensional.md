@@ -1,8 +1,8 @@
-\# Modelo multidimensional - Hito 8 - Grupo 9
+# Modelo multidimensional - Hito 8 - Grupo 9
 
 
 
-\## 1. Measurement principal
+## 1. Measurement principal
 
 
 
@@ -12,7 +12,7 @@ El módulo utiliza el measurement:
 
 ```text
 
-estadisticas\_equipo
+estadisticas_equipo
 
 ```
 
@@ -22,7 +22,7 @@ Cada punto representa el estado de las estadísticas de un equipo dentro de un p
 
 
 
-\## 2. Tags
+## 2. Tags
 
 
 
@@ -32,17 +32,17 @@ Los tags definidos son:
 
 ```text
 
-partido\_id
+partido_id
 
-equipo\_codigo
+equipo_codigo
 
-sede\_id
+sede_id
 
 ```
 
 
 
-\### partido\_id
+### partido_id
 
 
 
@@ -70,7 +70,7 @@ Se utiliza como tag porque las consultas frecuentemente se filtran por partido.
 
 
 
-\### equipo\_codigo
+### equipo_codigo
 
 
 
@@ -98,7 +98,7 @@ Permite filtrar y comparar los dos equipos participantes de un partido.
 
 
 
-\### sede\_id
+### sede_id
 
 
 
@@ -126,11 +126,11 @@ Se conserva como dimensión para permitir consultas o comparaciones asociadas a 
 
 
 
-\## 3. Fields
+## 3. Fields
 
 
 
-\### posesion\_pct
+### posesion_pct
 
 
 
@@ -170,7 +170,7 @@ No corresponde sumar porcentajes de diferentes instantes.
 
 
 
-\### pases\_completados\_total
+### pases_completados_total
 
 
 
@@ -214,7 +214,7 @@ No debe utilizarse `sum()` sobre todas las muestras porque se contarían repetid
 
 
 
-\### tiros\_intervalo
+### tiros_intervalo
 
 
 
@@ -250,7 +250,7 @@ sum()
 
 
 
-\### recuperaciones\_intervalo
+### recuperaciones_intervalo
 
 
 
@@ -286,7 +286,7 @@ sum()
 
 
 
-\## 4. Timestamp
+## 4. Timestamp
 
 
 
@@ -312,13 +312,13 @@ La carga se ejecuta especificando:
 
 ```text
 
-\--precision ms
+--precision ms
 
 ```
 
 
 
-\## 5. Line Protocol
+## 5. Line Protocol
 
 
 
@@ -328,7 +328,7 @@ Ejemplo de punto:
 
 ```text
 
-estadisticas\_equipo,partido\_id=P001,equipo\_codigo=AAA,sede\_id=S001 posesion\_pct=49.85,pases\_completados\_total=0i,tiros\_intervalo=0i,recuperaciones\_intervalo=0i 1907175600000
+estadisticas_equipo,partido_id=P001,equipo_codigo=AAA,sede_id=S001 posesion_pct=49.85,pases_completados_total=0i,tiros_intervalo=0i,recuperaciones_intervalo=0i 1907175600000
 
 ```
 
@@ -352,7 +352,7 @@ timestamp
 
 
 
-\## 6. Identidad de una serie
+## 6. Identidad de una serie
 
 
 
@@ -374,19 +374,19 @@ En este modelo:
 
 ```text
 
-estadisticas\_equipo
+estadisticas_equipo
 
-\+
++
 
-partido\_id
+partido_id
 
-\+
++
 
-equipo\_codigo
+equipo_codigo
 
-\+
++
 
-sede\_id
+sede_id
 
 ```
 
@@ -396,7 +396,7 @@ El timestamp diferencia las observaciones que forman la evolución temporal de l
 
 
 
-\## 7. Tags versus fields
+## 7. Tags versus fields
 
 
 
@@ -408,19 +408,19 @@ No se utilizan como tags:
 
 
 
-\- timestamp;
+- timestamp;
 
-\- porcentaje de posesión;
+- porcentaje de posesión;
 
-\- cantidad de pases;
+- cantidad de pases;
 
-\- tiros;
+- tiros;
 
-\- recuperaciones;
+- recuperaciones;
 
-\- identificadores únicos por observación;
+- identificadores únicos por observación;
 
-\- texto libre.
+- texto libre.
 
 
 
@@ -428,7 +428,7 @@ Esos valores presentan alta variación o representan medidas, por lo que incorpo
 
 
 
-\## 8. Measurement histórico
+## 8. Measurement histórico
 
 
 
@@ -438,7 +438,7 @@ El downsampling genera:
 
 ```text
 
-estadisticas\_equipo\_resumen\_1m
+estadisticas_equipo_resumen_1m
 
 ```
 
@@ -450,7 +450,7 @@ dentro del bucket:
 
 ```text
 
-estadisticas\_historicas
+estadisticas_historicas
 
 ```
 
@@ -466,13 +466,13 @@ La función aplicada depende de cada field:
 
 ```text
 
-posesion\_pct              -> mean()
+posesion_pct              -> mean()
 
-pases\_completados\_total   -> last()
+pases_completados_total   -> last()
 
-tiros\_intervalo           -> sum()
+tiros_intervalo           -> sum()
 
-recuperaciones\_intervalo  -> sum()
+recuperaciones_intervalo  -> sum()
 
 ```
 

@@ -1,8 +1,8 @@
-\# Retención y granularidad - Hito 8 - Grupo 9
+# Retención y granularidad - Hito 8 - Grupo 9
 
 
 
-\## 1. Estrategia temporal
+## 1. Estrategia temporal
 
 
 
@@ -12,9 +12,9 @@ El módulo utiliza dos niveles principales de almacenamiento:
 
 ```text
 
-estadisticas\_live
+estadisticas_live
 
-estadisticas\_historicas
+estadisticas_historicas
 
 ```
 
@@ -24,7 +24,7 @@ El objetivo es separar las necesidades operativas de corto plazo de las consulta
 
 
 
-\## 2. Bucket de datos en vivo
+## 2. Bucket de datos en vivo
 
 
 
@@ -34,7 +34,7 @@ Bucket:
 
 ```text
 
-estadisticas\_live
+estadisticas_live
 
 ```
 
@@ -70,7 +70,7 @@ Los datos de alta resolución permiten analizar cambios durante el partido y con
 
 
 
-\## 3. Bucket histórico
+## 3. Bucket histórico
 
 
 
@@ -80,7 +80,7 @@ Bucket:
 
 ```text
 
-estadisticas\_historicas
+estadisticas_historicas
 
 ```
 
@@ -116,7 +116,7 @@ El histórico conserva una versión resumida de las estadísticas.
 
 
 
-\## 4. Downsampling
+## 4. Downsampling
 
 
 
@@ -128,7 +128,7 @@ La función aplicada depende de la semántica de cada medida.
 
 
 
-\### posesion\_pct
+### posesion_pct
 
 
 
@@ -160,7 +160,7 @@ Se calcula el promedio de las observaciones del minuto.
 
 
 
-\### pases\_completados\_total
+### pases_completados_total
 
 
 
@@ -196,7 +196,7 @@ Sumar las muestras produciría un resultado incorrecto.
 
 
 
-\### tiros\_intervalo
+### tiros_intervalo
 
 
 
@@ -224,7 +224,7 @@ sum()
 
 
 
-\### recuperaciones\_intervalo
+### recuperaciones_intervalo
 
 
 
@@ -252,7 +252,7 @@ sum()
 
 
 
-\## 5. Measurement histórico
+## 5. Measurement histórico
 
 
 
@@ -262,7 +262,7 @@ El resumen utiliza:
 
 ```text
 
-estadisticas\_equipo\_resumen\_1m
+estadisticas_equipo_resumen_1m
 
 ```
 
@@ -274,17 +274,17 @@ y mantiene las dimensiones:
 
 ```text
 
-partido\_id
+partido_id
 
-equipo\_codigo
+equipo_codigo
 
-sede\_id
+sede_id
 
 ```
 
 
 
-\## 6. Reducción de granularidad
+## 6. Reducción de granularidad
 
 
 
@@ -328,7 +328,7 @@ Para las ocho series de la muestra:
 
 
 
-La validación del histórico para `posesion\_pct` devolvió exactamente:
+La validación del histórico para `posesion_pct` devolvió exactamente:
 
 
 
@@ -340,7 +340,7 @@ La validación del histórico para `posesion\_pct` devolvió exactamente:
 
 
 
-\## 7. Ciclo de vida
+## 7. Ciclo de vida
 
 
 
@@ -354,7 +354,7 @@ Captura cada 5 segundos
 
 &#x20;       ↓
 
-estadisticas\_live
+estadisticas_live
 
 &#x20;       ↓
 
@@ -362,7 +362,7 @@ Downsampling cada 1 minuto
 
 &#x20;       ↓
 
-estadisticas\_historicas
+estadisticas_historicas
 
 &#x20;       ↓
 
@@ -380,7 +380,7 @@ Los datos históricos permanecen durante 365 días.
 
 
 
-\## 8. Justificación
+## 8. Justificación
 
 
 
@@ -388,13 +388,13 @@ Durante el partido resulta útil conservar alta resolución porque permite:
 
 
 
-\- representar cambios recientes;
+- representar cambios recientes;
 
-\- consultar ventanas pequeñas;
+- consultar ventanas pequeñas;
 
-\- comparar equipos;
+- comparar equipos;
 
-\- analizar evolución temporal.
+- analizar evolución temporal.
 
 
 
@@ -406,7 +406,7 @@ El resumen de un minuto permite conservar tendencias y resultados históricos re
 
 
 
-\## 9. Futuras extensiones
+## 9. Futuras extensiones
 
 
 
